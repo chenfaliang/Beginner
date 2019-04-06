@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数组去重-构建新数组法</title>
+</head>
+<body>
+<script>
+    var arr1=[1,2,3,2,2,3,1,1,3,3,1,1,1,1,1,5,6,7,8,8];//这个是原数组
+
+    //创建一个方法，传入任何数组，都能去重
+    function rmRepeat(a) {
+        var arr2=[];//创建一个临时数组
+        for(var i = 0; i < a.length; i++) {//对传进来的数组进行遍历，依次找到每一个数组中对应下标的值
+            if (arr2.indexOf(a[i])===-1){//在新的临时数组中判断，检查是否有传进来的数组，没找到就返回-1
+                arr2.push(a[i]);//如果这个值返回-1 ，说明这个值再新数组中没有，就把这个值追加到新数组中
+            }
+        }
+        return arr2;//把新数组当做返回值，方便调用的时候可以接收新数组
+    }
+    var arr2=rmRepeat(arr1);
+    console.log(arr2);
+
+
+
+    // function uniq(array){
+    //     var temp = []; //一个新的临时数组
+    //     for(var i = 0; i < array.length; i++){
+    //         if(temp.indexOf(array[i]) == -1){
+    //             temp.push(array[i]);
+    //         }
+    //     }
+    //     return temp;
+    // }
+    //
+    // var aa = [1,2,2,4,9,6,7,5,2,3,5,6,5];
+    // console.log(uniq(aa));
+
+</script>
+
+</body>
+</html>

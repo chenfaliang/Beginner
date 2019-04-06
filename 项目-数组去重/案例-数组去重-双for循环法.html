@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>数组去重</title>
+</head>
+<body>
+<script type="text/javascript">
+	var arr=[1,2,2,3,4,5,3,2,2,8,2,9,8];
+	// 方案一：
+	// 1用双for循环法，
+	// 通过for把每一个数字找出来，然后再通过for循环，再把后面(i+1)的数字拿出来，分别做对比，
+	// 如果2个数字是相同的，就删掉后面的那一个
+	// var newArr=[]
+
+	for (var i = 0; i < arr.length; i++) {
+		   var itm=arr[i];
+		   for (var k =i+1; k < arr.length; k++) {
+		   		if (arr[k]===itm) {
+		   			arr.splice(k,1);
+		   			k--;//防止产生数组塌陷
+		   		} 
+		   }
+	}
+	console.log(arr);
+
+
+
+
+	// function rmRepeat(a) {
+	// 	if (arr[i]===a) {
+	// 		arr.splice(i,1);
+	// 	}
+	// }
+	// for (var i = 0; i < arr.length; i++) {
+	// 	rmRepeat(arr[i]);
+	// }
+	// 	console.log(arr);
+
+</script>
+</body>
+</html>

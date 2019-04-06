@@ -1,0 +1,60 @@
+/***********************CSS初始化***************************/
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5,
+h6, pre, form, fieldset, input, p, blockquote, th, td {
+    margin:0;
+    padding:0;
+}
+body {
+    font-size:14px;
+    color:#000000;
+    background:url("../images/5a2.jpg") no-repeat
+    top center;
+    line-height:24px;
+    }
+/***********************CSS初始化结束***************************/
+
+/***********************表格处理部分***************************/
+table {
+    border-collapse:collapse;
+    border-spacing: 0;
+    margin: 0 auto;
+    padding:0;
+    /*margin: 0 auto;*/
+}
+td{
+    padding: 20px;
+    border:1px solid red;
+    font-size: 20px;
+}
+/***********************选中的样式***************************/
+.selection {
+    background: deeppink;
+}
+/***********************表格H2***************************/
+
+.tit {
+    width: 200px;
+    height: 100px;
+    /*border: 1px solid red;*/
+    margin: 0 auto;
+
+}
+.tit h2 {
+    margin: 30px 50px;
+}
+/***********************按钮***************************/
+.btn {
+    width:300px;
+    height: 60px;
+    line-height: 30px;
+    border: 1px solid hotpink;
+    /*display: inline-block;*/
+    margin: 0 auto;
+    padding: 30px 0;
+}
+.btn button {
+   margin-left:50px ;
+}
+input {
+    margin-left:50px ;
+}
