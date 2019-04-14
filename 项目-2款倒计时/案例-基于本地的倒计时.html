@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>倒计时</title>
+    <style>
+
+        div {
+            width: 500px;
+            height: 100px;
+            margin: 50px auto;
+            border: 1px dashed red;
+            text-align: center;
+            line-height: 30px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p>基于本地时间的倒计时案例</p>
+    <span>距离抢购还剩：</span>
+    <span></span>
+</div>
+<script>
+    let span=document.getElementsByTagName('span')[1];
+
+    span.innerHTML=countDown();
+	 setInterval(function(){
+		span.innerHTML=countDown();
+	}, 1000);
+
+// 倒计时
+	function countDown() {
+	 let nowTime = new Date(new Date()),
+         targetTime = new Date('2019-4-14 18:00:00'),
+         t=(targetTime.getTime()-nowTime.getTime());
+    var days = parseInt(t / (1000 * 60 * 60 * 24));
+    var hours = parseInt((t % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    var minutes = parseInt((t % (1000 * 60 * 60)) / (1000 * 60));
+    var seconds = parseInt((t % (1000 * 60)) / 1000);
+    return days + " 天 " + hours + " 小时 " + minutes + " 分钟 " + seconds+"秒";
+	}
+</script>
+
+</body>
+</html>

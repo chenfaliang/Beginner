@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		div {
+			width: 500px;
+			height: 200px;
+			border: 1px dashed red;
+			text-align: center;
+			line-height: 30px;
+			margin: 50px auto;
+			font-size: 20px;
+		}
+	</style>
+</head>
+
+<body>
+	<div>
+		<p>基于服务器的倒计时案例</p>
+		<span>距离抢购还剩：</span>
+		<span></span>
+	</div>
+	<script>
+		// 思路
+		// 1 得到服务器时间
+		// 2 将得到服务器的时间与目标时间进行计算，计算差值,将内容显示到页面中
+		// 3 使用定时器
+
+
+		var span = document.getElementsByTagName('span')[1];
+		// var t = null;
+		var allt = null;
+		var flag = 0;
+
+
+		//得到服务器时间-------使用promise实例
+		var getonlioneTime = function () {
+			return new Promise(function (resolve) {
+				var xhr = new XMLHttpRequest();
+				xhr.open('get', 'test.json', true);
+				xhr.onreadystatechange = () => {
+					if (xhr.readyState === 2) {
+						t = new Date(xhr.getResponseHeader('Date'));
+						allt = t;
+						resolve(t);
+					}
+				}
+				xhr.send(null);
+			})
+		};
+
+
+		// 计算与目标时间的差值
+		var countDown = function () {
+			var onTime = getonlioneTime();
+			onTime.then(fn);
+
+			function fn() {
+				var nowTime = t;
+				var targetTime = new Date('2019/5/15 18:00:00');
+				var disTime = (targetTime.getTime() - nowTime.getTime());
+				var days = parseInt(disTime / (1000 * 60 * 60 * 24));
+				var hours = parseInt((disTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+				var minutes = parseInt((disTime % (1000 * 60 * 60)) / (1000 * 60));
+				var seconds = parseInt((disTime % (1000 * 60)) / 1000);
+				if (seconds < 10) {
+					return span.innerHTML = days + " 天 " + hours + " 小时 " + minutes + " 分钟 " + '0' + seconds + "秒";
+				}
+				return span.innerHTML = days + " 天 " + hours + " 小时 " + minutes + " 分钟 " + seconds + "秒";
+			}
+		}
+
+
+		// 第一次获得服务器时间后，不再向服务器发起请求
+		var f1 = function () {
+			flag++;
+			var targetTime = new Date('2019/5/15 18:00:00');
+			disTime = (targetTime.getTime() - allt.getTime()) / 1000;
+			disTime -= flag;
+			var days = parseInt(disTime / (60 * 60 * 24));
+			var hours = parseInt((disTime % (60 * 60 * 24)) / (60 * 60));
+			var minutes = parseInt((disTime % (60 * 60)) / (60));
+			var seconds = parseInt((disTime % (60)));
+			if (seconds < 10) {
+				return span.innerHTML = days + " 天 " + hours + " 小时 " + minutes + " 分钟 " + '0' + seconds + "秒";
+			}
+			return span.innerHTML = days + " 天 " + hours + " 小时 " + minutes + " 分钟 " + seconds + "秒";
+		}
+
+		// 定时器，倒计时开始运算
+		countDown();//得到服务器时间，并把得到的服务器时间转为全局变量
+		setInterval(function () {
+			f1();
+		}, 1000);
+
+
+
+
+
+
+
+
+
+
+
+		// var nowTime = null;
+		// var targetTime = null;
+		// var disTime = null;
+		// var days = null;
+		// var hours = null;
+		// var minutes = null;
+		// var seconds = null;
+	</script>
+</body>
+
+</html>
